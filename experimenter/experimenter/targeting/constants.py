@@ -219,7 +219,8 @@ FIRST_RUN = NimbusTargetingConfig(
 MSIX_FIRST_RUN = NimbusTargetingConfig(
     name="First start-up users with MSIX Firefox",
     slug="msix_first_run",
-    description=("First start-up users (e.g. for about:welcome) with MSIX Firefox"),
+    description=(
+        "First start-up users (e.g. for about:welcome) with MSIX Firefox"),
     targeting="(isFirstStartup && os.isWindows && os.windowsVersion >= 10 && isMSIX)",
     desktop_telemetry="",
     sticky_required=False,
@@ -530,7 +531,8 @@ WINDOWS_WITH_USERCHOICE_FIRST_RUN = NimbusTargetingConfig(
 WINDOWS_WITH_USERCHOICE_22H2 = NimbusTargetingConfig(
     name="Users on Windows version 22H2 with UserChoice support",
     slug="windows_userchoice_22h2",
-    description=("Windows 22H2 with UserChoice support (version 22H2+/build ID 19045+)"),
+    description=(
+        "Windows 22H2 with UserChoice support (version 22H2+/build ID 19045+)"),
     targeting=f"{WIN22H2}",
     desktop_telemetry="",
     sticky_required=False,
@@ -554,7 +556,8 @@ FX95_DESKTOP_USERS = NimbusTargetingConfig(
 MOBILE_NEW_USER = NimbusTargetingConfig(
     name="New Users on Mobile",
     slug="mobile_new_users",
-    description=("New users on mobile who installed the app less than a week ago"),
+    description=(
+        "New users on mobile who installed the app less than a week ago"),
     targeting="days_since_install < 7",
     desktop_telemetry="",
     sticky_required=True,
@@ -763,7 +766,8 @@ RELAY_USER = NimbusTargetingConfig(
     name="Relay user",
     slug="relay_user",
     description="Include users who have Relay",
-    targeting=('("9ebfe2c2f9ea3c58" in attachedFxAOAuthClients|mapToProperty("id"))'),
+    targeting=(
+        '("9ebfe2c2f9ea3c58" in attachedFxAOAuthClients|mapToProperty("id"))'),
     desktop_telemetry="",
     sticky_required=False,
     is_first_run_required=False,
@@ -1366,7 +1370,8 @@ EXISTING_USER_REVIEW_CHECKER_SIDEBAR_RECOMMENDATION = NimbusTargetingConfig(
     slug="existing_user_review_checker_sidebar_recommendation",
     description="Exclude existing users who have the Fakespot extension installed, "
     "or who have the CFR pref set to false",
-    targeting=(f"{PROFILE28DAYS} && {REVIEW_CHECKER_SIDEBAR_RECOMMENDATION.targeting}"),
+    targeting=(
+        f"{PROFILE28DAYS} && {REVIEW_CHECKER_SIDEBAR_RECOMMENDATION.targeting}"),
     desktop_telemetry="",
     sticky_required=False,
     is_first_run_required=False,
@@ -1598,7 +1603,8 @@ ANDROID_CORE_ACTIVE_USER = NimbusTargetingConfig(
     desktop_telemetry="",
     sticky_required=True,
     is_first_run_required=False,
-    application_choice_names=(Application.FENIX.name, Application.FOCUS_ANDROID.name),
+    application_choice_names=(Application.FENIX.name,
+                              Application.FOCUS_ANDROID.name),
 )
 
 IOS_CORE_ACTIVE_USER = NimbusTargetingConfig(
@@ -1609,7 +1615,8 @@ IOS_CORE_ACTIVE_USER = NimbusTargetingConfig(
     desktop_telemetry="",
     sticky_required=True,
     is_first_run_required=False,
-    application_choice_names=(Application.IOS.name, Application.FOCUS_IOS.name),
+    application_choice_names=(Application.IOS.name,
+                              Application.FOCUS_IOS.name),
 )
 
 IOS_EXISTING_USERS = NimbusTargetingConfig(
@@ -1627,11 +1634,13 @@ ANDROID_RECENTLY_LOGGED_IN_USER = NimbusTargetingConfig(
     name="Recently Logged In Users",
     slug="android_recently_logged_in_users",
     description="Users who have completed a Sync login within the last 12 weeks",
-    targeting=RECENTLY_LOGGED_IN_USERS_TARGETING.format(event="sync_auth.sign_in"),
+    targeting=RECENTLY_LOGGED_IN_USERS_TARGETING.format(
+        event="sync_auth.sign_in"),
     desktop_telemetry="",
     sticky_required=True,
     is_first_run_required=False,
-    application_choice_names=(Application.FENIX.name, Application.FOCUS_ANDROID.name),
+    application_choice_names=(Application.FENIX.name,
+                              Application.FOCUS_ANDROID.name),
 )
 
 IOS_RECENTLY_LOGGED_IN_USER = NimbusTargetingConfig(
@@ -1644,7 +1653,8 @@ IOS_RECENTLY_LOGGED_IN_USER = NimbusTargetingConfig(
     desktop_telemetry="",
     sticky_required=True,
     is_first_run_required=False,
-    application_choice_names=(Application.IOS.name, Application.FOCUS_IOS.name),
+    application_choice_names=(Application.IOS.name,
+                              Application.FOCUS_IOS.name),
 )
 
 HAS_GOOGLE_BING_DDG_AS_CURRENT_DEFAULT_SEARCH_ENGINE = NimbusTargetingConfig(
@@ -2309,7 +2319,17 @@ SHOPPING_ONBOARDING_SHOWN = NimbusTargetingConfig(
     application_choice_names=(Application.DESKTOP.name,),
 )
 
-IS_64BIT_WITH_8GB_RAM = NimbusTargetingConfig(
+IS_4GB_RAM = NimbusTargetingConfig(
+    name="Firefox build running on a computer with at least 4GB of RAM",
+    slug="is_atleast_4gb_ram",
+    description="Target computers with at least 4GB of RAM.",
+    targeting="memoryMB >= 4000",
+    desktop_telemetry="",
+    sticky_required=False,
+    is_first_run_required=False,
+    application_choice_names=(Application.DESKTOP.name,),
+
+IS_64BIT_WITH_8GB_RAM=NimbusTargetingConfig(
     name="64bit Firefox build running on a computer with at least 8GB of RAM",
     slug="is_64bit_build_and_8gb_ram",
     description="Target 64bit builds running on computers with at least 8GB of RAM.",
@@ -2320,7 +2340,7 @@ IS_64BIT_WITH_8GB_RAM = NimbusTargetingConfig(
     application_choice_names=(Application.DESKTOP.name,),
 )
 
-VIEWPOINT_SURVEY_DESKTOP = NimbusTargetingConfig(
+VIEWPOINT_SURVEY_DESKTOP=NimbusTargetingConfig(
     name="User Research Viewpoint Survey (Rolling Enrollment)",
     slug="viewpoint_survey_desktop",
     description=(
@@ -2337,7 +2357,7 @@ VIEWPOINT_SURVEY_DESKTOP = NimbusTargetingConfig(
     application_choice_names=(Application.DESKTOP.name,),
 )
 
-VIEWPOINT_SURVEY_MOBILE = NimbusTargetingConfig(
+VIEWPOINT_SURVEY_MOBILE=NimbusTargetingConfig(
     name="User Research Viewpoint Survey (Rolling Enrollment)",
     slug="viewpoint_survey_mobile",
     description=(
@@ -2354,7 +2374,7 @@ VIEWPOINT_SURVEY_MOBILE = NimbusTargetingConfig(
     application_choice_names=(Application.IOS.name, Application.FENIX.name),
 )
 
-NEW_PROFILE_MAC_ONLY = NimbusTargetingConfig(
+NEW_PROFILE_MAC_ONLY=NimbusTargetingConfig(
     name="New profile Mac OS only",
     slug="mac_only_new_profiles",
     description="New profiles with Mac OS",
@@ -2365,7 +2385,7 @@ NEW_PROFILE_MAC_ONLY = NimbusTargetingConfig(
     application_choice_names=(Application.DESKTOP.name,),
 )
 
-SEARCH_ROLLOUT_1 = NimbusTargetingConfig(
+SEARCH_ROLLOUT_1=NimbusTargetingConfig(
     name="Search Rollout 1",
     slug="search_rollout_1",
     description="Search Rollout 1 Namespace",
@@ -2376,7 +2396,7 @@ SEARCH_ROLLOUT_1 = NimbusTargetingConfig(
     application_choice_names=(Application.DESKTOP.name,),
 )
 
-SEARCH_ROLLOUT_2 = NimbusTargetingConfig(
+SEARCH_ROLLOUT_2=NimbusTargetingConfig(
     name="Search Rollout 2",
     slug="search_rollout_2",
     description="Search Rollout 2 Namespace",
@@ -2387,7 +2407,7 @@ SEARCH_ROLLOUT_2 = NimbusTargetingConfig(
     application_choice_names=(Application.DESKTOP.name,),
 )
 
-AD_BLOCKERS_INSTALLED = NimbusTargetingConfig(
+AD_BLOCKERS_INSTALLED=NimbusTargetingConfig(
     name="Ad blockers installed",
     slug="ad_blockers_installed",
     description="Users who have installed an adblocker.",
@@ -2406,33 +2426,35 @@ AD_BLOCKERS_INSTALLED = NimbusTargetingConfig(
     application_choice_names=(Application.DESKTOP.name,),
 )
 
-HAS_BING_AS_DEFAULT_SEARCH_ENGINE_AND_AD_BLOCKERS_INSTALLED = NimbusTargetingConfig(
+HAS_BING_AS_DEFAULT_SEARCH_ENGINE_AND_AD_BLOCKERS_INSTALLED=NimbusTargetingConfig(
     name="Has Bing as current default search engine and ad blockers installed",
     slug="has_bing_as_current_default_search_engine_and_ad_blockers_installed",
     description=(
         "Users with bing as current default search engine and has an adblocker installed."
     ),
-    targeting=(f"searchEngines.current =='bing' && ({AD_BLOCKERS_INSTALLED.targeting})"),
+    targeting=(
+        f"searchEngines.current =='bing' && ({AD_BLOCKERS_INSTALLED.targeting})"),
     desktop_telemetry="",
     sticky_required=False,
     is_first_run_required=False,
     application_choice_names=(Application.DESKTOP.name,),
 )
 
-HAS_BING_AS_DEFAULT_SEARCH_ENGINE_AND_NO_AD_BLOCKERS_INSTALLED = NimbusTargetingConfig(
+HAS_BING_AS_DEFAULT_SEARCH_ENGINE_AND_NO_AD_BLOCKERS_INSTALLED=NimbusTargetingConfig(
     name="Has Bing as current default search engine and no ad blockers installed",
     slug="has_bing_as_current_default_search_engine_and_no_ad_blockers_installed",
     description=(
         "Users with bing as current default search engine and has no adblocker installed."
     ),
-    targeting=(f"searchEngines.current =='bing' && !({AD_BLOCKERS_INSTALLED.targeting})"),
+    targeting=(
+        f"searchEngines.current =='bing' && !({AD_BLOCKERS_INSTALLED.targeting})"),
     desktop_telemetry="",
     sticky_required=False,
     is_first_run_required=False,
     application_choice_names=(Application.DESKTOP.name,),
 )
 
-EARLY_DAY_WIN1903_USER_HAS_DEFAULT = NimbusTargetingConfig(
+EARLY_DAY_WIN1903_USER_HAS_DEFAULT=NimbusTargetingConfig(
     name="Early Day Windows 10 1903 User Has Default",
     slug="early_day_win1903_user_has_default",
     description=(
@@ -2446,7 +2468,7 @@ EARLY_DAY_WIN1903_USER_HAS_DEFAULT = NimbusTargetingConfig(
     application_choice_names=(Application.DESKTOP.name,),
 )
 
-EXISTING_WIN1903_USER_HAS_DEFAULT = NimbusTargetingConfig(
+EXISTING_WIN1903_USER_HAS_DEFAULT=NimbusTargetingConfig(
     name="Existing Windows 1903+ User Has Default",
     slug="existing_win1903_user_has_default",
     description=(
@@ -2460,7 +2482,7 @@ EXISTING_WIN1903_USER_HAS_DEFAULT = NimbusTargetingConfig(
     application_choice_names=(Application.DESKTOP.name,),
 )
 
-SIGNED_IN_USER = NimbusTargetingConfig(
+SIGNED_IN_USER=NimbusTargetingConfig(
     name="Signed-in User",
     slug="signed_in_user",
     description="Users who are signed into FxA",
@@ -2471,7 +2493,7 @@ SIGNED_IN_USER = NimbusTargetingConfig(
     application_choice_names=(Application.DESKTOP.name,),
 )
 
-SIGNED_OUT_USER = NimbusTargetingConfig(
+SIGNED_OUT_USER=NimbusTargetingConfig(
     name="Signed-out User",
     slug="signed_out_user",
     description="Users who are NOT signed into FxA",
@@ -2482,7 +2504,7 @@ SIGNED_OUT_USER = NimbusTargetingConfig(
     application_choice_names=(Application.DESKTOP.name,),
 )
 
-SYNC_USER = NimbusTargetingConfig(
+SYNC_USER=NimbusTargetingConfig(
     name="Sync User",
     slug="sync_user",
     description="Users who have sync enabled and are signed into FxA",
@@ -2493,7 +2515,7 @@ SYNC_USER = NimbusTargetingConfig(
     application_choice_names=(Application.DESKTOP.name,),
 )
 
-EXISTING_USER_HASNT_CHANGED_BOOKMARKS_TOOLBAR = NimbusTargetingConfig(
+EXISTING_USER_HASNT_CHANGED_BOOKMARKS_TOOLBAR=NimbusTargetingConfig(
     name="Existing User, Hasn't Changed Bookmarks Toolbar Behavior",
     slug="existing_user_bookmarks_toolbar_unchanged",
     description=(
@@ -2510,7 +2532,7 @@ EXISTING_USER_HASNT_CHANGED_BOOKMARKS_TOOLBAR = NimbusTargetingConfig(
     application_choice_names=(Application.DESKTOP.name,),
 )
 
-MOZILLA_TESTDAY_EVENT = NimbusTargetingConfig(
+MOZILLA_TESTDAY_EVENT=NimbusTargetingConfig(
     name="Mozilla Testday",
     slug="users_that_have_testday_pref",
     description="Users that will be part of the Mozilla Testday events",
@@ -2521,20 +2543,21 @@ MOZILLA_TESTDAY_EVENT = NimbusTargetingConfig(
     application_choice_names=(Application.DESKTOP.name,),
 )
 
-DEFAULT_WINDOWS_CONTENT_PROCESS_SANDBOX_LEVEL = NimbusTargetingConfig(
+DEFAULT_WINDOWS_CONTENT_PROCESS_SANDBOX_LEVEL=NimbusTargetingConfig(
     name="Windows users and default content process sandbox level",
     slug="default_windows_content_process_sandbox_level",
     description=(
         "Windows users who have not changed the content process sandbox level pref"
     ),
-    targeting=("os.isWindows && !('security.sandbox.content.level'|preferenceIsUserSet)"),
+    targeting=(
+        "os.isWindows && !('security.sandbox.content.level'|preferenceIsUserSet)"),
     desktop_telemetry="",
     sticky_required=False,
     is_first_run_required=False,
     application_choice_names=(Application.DESKTOP.name,),
 )
 
-DEFAULT_AUTOFILL_CREDIT_CARDS_SUPPORTED = NimbusTargetingConfig(
+DEFAULT_AUTOFILL_CREDIT_CARDS_SUPPORTED=NimbusTargetingConfig(
     name="Users with Default or Non-'On' Setting for Credit Card Autofill",
     slug="default_autofill_credit_cards_supported",
     description=(
@@ -2551,7 +2574,7 @@ DEFAULT_AUTOFILL_CREDIT_CARDS_SUPPORTED = NimbusTargetingConfig(
     application_choice_names=(Application.DESKTOP.name,),
 )
 
-DEFAULT_AUTOFILL_ADDRESSES_SUPPORTED = NimbusTargetingConfig(
+DEFAULT_AUTOFILL_ADDRESSES_SUPPORTED=NimbusTargetingConfig(
     name="Users with Default or Non-'On' Setting for Address Autofill",
     slug="default_autofill_addresses_supported",
     description=(
@@ -2568,7 +2591,7 @@ DEFAULT_AUTOFILL_ADDRESSES_SUPPORTED = NimbusTargetingConfig(
     application_choice_names=(Application.DESKTOP.name,),
 )
 
-NO_HTTPS_ONLY_DESKTOP = NimbusTargetingConfig(
+NO_HTTPS_ONLY_DESKTOP=NimbusTargetingConfig(
     name="Users who are not in HTTPS-Only Mode",
     slug="no_https_only_desktop",
     description=(
@@ -2585,7 +2608,7 @@ NO_HTTPS_ONLY_DESKTOP = NimbusTargetingConfig(
     application_choice_names=(Application.DESKTOP.name,),
 )
 
-NON_SIDEBAR_USERS = NimbusTargetingConfig(
+NON_SIDEBAR_USERS=NimbusTargetingConfig(
     name="Users that have never used the sidebar",
     slug="non_sidebar_users",
     description="Target users who have never used the new or old sidebar",
@@ -2612,7 +2635,7 @@ NON_SIDEBAR_USERS = NimbusTargetingConfig(
     application_choice_names=(Application.DESKTOP.name,),
 )
 
-OLD_SIDEBAR_USERS = NimbusTargetingConfig(
+OLD_SIDEBAR_USERS=NimbusTargetingConfig(
     name="Users that use the old sidebar",
     slug="old_sidebar_users",
     description="Target users who use the old sidebar",
@@ -2623,7 +2646,7 @@ OLD_SIDEBAR_USERS = NimbusTargetingConfig(
     application_choice_names=(Application.DESKTOP.name,),
 )
 
-NEW_SIDEBAR_USERS = NimbusTargetingConfig(
+NEW_SIDEBAR_USERS=NimbusTargetingConfig(
     name="Users that use the new sidebar",
     slug="new_sidebar_users",
     description="Target users who use the new sidebar",
@@ -2634,7 +2657,7 @@ NEW_SIDEBAR_USERS = NimbusTargetingConfig(
     application_choice_names=(Application.DESKTOP.name,),
 )
 
-SIGNED_OUT_EARLY_DAY_USER = NimbusTargetingConfig(
+SIGNED_OUT_EARLY_DAY_USER=NimbusTargetingConfig(
     name="Signed-out early day user",
     slug="signed_out_early_day_user",
     description="Early day users who are NOT signed into FxA",
@@ -2645,7 +2668,7 @@ SIGNED_OUT_EARLY_DAY_USER = NimbusTargetingConfig(
     application_choice_names=(Application.DESKTOP.name,),
 )
 
-SIGNED_OUT_EXISTING_USER = NimbusTargetingConfig(
+SIGNED_OUT_EXISTING_USER=NimbusTargetingConfig(
     name="Signed-out existing user",
     slug="signed_out_existing_user",
     description="Existing users who are NOT signed into FxA",
@@ -2656,7 +2679,7 @@ SIGNED_OUT_EXISTING_USER = NimbusTargetingConfig(
     application_choice_names=(Application.DESKTOP.name,),
 )
 
-TOU_NOT_ACCEPTED_ADS_ENABLED_MAC_OR_WIN = NimbusTargetingConfig(
+TOU_NOT_ACCEPTED_ADS_ENABLED_MAC_OR_WIN=NimbusTargetingConfig(
     name="TOU not accepted yet, ads enabled, Mac or Win",
     slug="tou_not_accepted_ads_enabled_mac_win",
     description=(
@@ -2687,14 +2710,14 @@ TOU_NOT_ACCEPTED_ADS_ENABLED_MAC_OR_WIN = NimbusTargetingConfig(
 
 
 class TargetingConstants:
-    TARGETING_VERSION = "version|versionCompare('{version}') >= 0"
-    TARGETING_CHANNEL = 'browserSettings.update.channel == "{channel}"'
+    TARGETING_VERSION="version|versionCompare('{version}') >= 0"
+    TARGETING_CHANNEL='browserSettings.update.channel == "{channel}"'
 
-    TARGETING_CONFIGS = {
+    TARGETING_CONFIGS={
         targeting.slug: targeting for targeting in NimbusTargetingConfig.targeting_configs
     }
 
-    TargetingConfig = models.TextChoices(
+    TargetingConfig=models.TextChoices(
         "TargetingConfig",
         [
             (targeting.slug.upper(), targeting.slug)
@@ -2702,7 +2725,7 @@ class TargetingConstants:
         ],
     )
 
-    TARGETING_APPLICATION_SUPPORTED_VERSION = {
+    TARGETING_APPLICATION_SUPPORTED_VERSION={
         Application.FENIX: NimbusConstants.Version.FIREFOX_98,
         Application.FOCUS_ANDROID: NimbusConstants.Version.FIREFOX_98,
         Application.IOS: NimbusConstants.Version.FIREFOX_98,
